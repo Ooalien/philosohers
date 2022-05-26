@@ -6,7 +6,7 @@
 /*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:59:53 by abayar            #+#    #+#             */
-/*   Updated: 2022/05/26 15:56:32 by abayar           ###   ########.fr       */
+/*   Updated: 2022/05/26 16:28:59 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	to_do(t_philo *philo, int index)
 		philo->eating = 1;
 		philo->last_meal = timenow();
 		mysleep(philo->data->t_eat);
-		 philo->eating = 0;
+		philo->eating = 0;
 		if (++philo->meals >= philo->data->n_meal && philo->data->n_meal != -1)
 			philo->data->end++;
 	}
@@ -98,19 +98,17 @@ void	check_dead(int i, t_philo *philo, t_data *data)
 			if (!philo[i].eating)
 			{
 				pthread_mutex_lock(&data->dead[i]);
-				//pthread_mutex_lock(&philo->data->toto);
-				if (timenow() - philo[i].last_meal >= data->t_die)// && !philo[i].eating)
+				if (timenow() - philo[i].last_meal >= data->t_die)
 				{
 					pthread_mutex_lock(&philo[i].data->print);
 					printf("%zu %d died\n", timenow() - philo[i].start, i + 1);
 					return ;
 				}
-				if (data->end >= data->nph && data->n_meal != -1)// && !philo[i].eating)
+				if (data->end >= data->nph && data->n_meal != -1)
 				{
 					pthread_mutex_lock(&philo[i].data->print);
 					return ;
 				}
-				//pthread_mutex_unlock(&philo->data->toto);
 				pthread_mutex_unlock(&data->dead[i]);
 			}
 			i++;
@@ -160,7 +158,6 @@ void	even_philos(int i, t_data *data, t_philo *philo)
 	{
 		if ((i + 1) % 2 == 0)
 		{
-			//philo[i].i = 0;
 			philo[i].id = i + 1;
 			philo[i].meals = 0;
 			philo[i].data = data;
@@ -179,7 +176,6 @@ void	odd_philos(int i, t_data *data, t_philo *philo)
 	{
 		if ((i + 1) % 2 == 1)
 		{
-			//philo[i].i = 0;
 			philo[i].id = i + 1;
 			philo[i].meals = 0;
 			philo[i].data = data;

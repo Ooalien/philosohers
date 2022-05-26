@@ -1,49 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 16:51:51 by abayar            #+#    #+#             */
-/*   Updated: 2022/05/26 16:40:21 by abayar           ###   ########.fr       */
+/*   Created: 2022/05/26 18:07:41 by abayar            #+#    #+#             */
+/*   Updated: 2022/05/26 18:08:08 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
-# include <stdatomic.h>
 
 typedef struct s_data
 {
-	pthread_mutex_t	*dead;
-	pthread_mutex_t	*fork;
-	pthread_mutex_t	print;
-	pthread_mutex_t	toto;
-	int				nph;
-	size_t			t_die;
-	int				t_eat;
-	int				t_sleep;
-	int				n_meal;
-	atomic_int		end;
-}	t_data;
 
-typedef struct s_philo
-{
-	pthread_t	ph;
-	t_data		*data;
-	int			id;
-	size_t		last_meal;
-	atomic_int	meals;
-	atomic_int	eating;
-	size_t		start;
-}	t_philo;
+}	t_data;
 
 int	is_num(char *s);
 int	check_args(char **av);
