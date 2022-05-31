@@ -6,7 +6,23 @@
 /*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:05:57 by abayar            #+#    #+#             */
-/*   Updated: 2022/05/26 18:05:58 by abayar           ###   ########.fr       */
+/*   Updated: 2022/05/30 15:14:46 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "philo_bonus.h"
+
+int main(int ac, char **av)
+{
+	if (ac == 5 || ac == 6)
+	{
+		if (check_args(av) == 0)
+		{
+			write(2, "Error args\n", 11);
+			return (1);
+		}
+	}
+	else
+		
+	return (0);
+}

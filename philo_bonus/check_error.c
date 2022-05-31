@@ -6,11 +6,11 @@
 /*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 19:44:50 by abayar            #+#    #+#             */
-/*   Updated: 2022/05/10 18:10:56 by abayar           ###   ########.fr       */
+/*   Updated: 2022/05/30 15:12:41 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 int	is_num(char *s)
 {

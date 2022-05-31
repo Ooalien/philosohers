@@ -6,11 +6,11 @@
 /*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 11:26:04 by abayar            #+#    #+#             */
-/*   Updated: 2022/05/10 18:05:25 by abayar           ###   ########.fr       */
+/*   Updated: 2022/05/30 15:13:59 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 static long long	checker(long long n)
 {

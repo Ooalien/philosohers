@@ -6,11 +6,11 @@
 #    By: abayar <abayar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 18:05:14 by abayar            #+#    #+#              #
-#    Updated: 2022/05/26 18:06:03 by abayar           ###   ########.fr        #
+#    Updated: 2022/05/30 15:13:30 by abayar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = check_error.c ft_atoi.c philo.c
+SRC = check_error.c ft_atoi.c philo_bonus.c
 
 NAME = philo_bonus
 
