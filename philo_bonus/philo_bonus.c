@@ -6,7 +6,7 @@
 /*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:05:57 by abayar            #+#    #+#             */
-/*   Updated: 2022/05/31 18:37:37 by abayar           ###   ########.fr       */
+/*   Updated: 2022/05/31 21:18:59 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	mysleep(size_t time)
 
 void	creatsema(t_data *data)
 {
-	unlink("forks");
-	unlink("print");
+	sem_unlink("forks");
+	sem_unlink("print");
 	data->print = sem_open("print", O_CREAT, 0644, 1);
 	data->forks = sem_open("forks", O_CREAT, 0644, data->nph);
 	if (data->forks == SEM_FAILED || data->print == SEM_FAILED)
@@ -88,13 +88,13 @@ void	print(t_data *data, int index)
 {
 	sem_wait(data->print);
 	if (index == 0)
-		printf("%zu %zu has taken a fork\n", timenow() - data->start, data->id);
+		printf("%zu %zu has taken a fork\n", timenow() - data->start, data->id + 1 );
 	else if (index == 1)
-		printf("%zu %zu is eating\n", timenow() - data->start, data->id);
+		printf("%zu %zu is eating\n", timenow() - data->start, data->id + 1);
 	else if (index == 2)
-		printf("%zu %zu is sleeping\n", timenow() - data->start, data->id);
+		printf("%zu %zu is sleeping\n", timenow() - data->start, data->id + 1);
 	else if (index == 3)
-		printf("%zu %zu is thinking\n", timenow() - data->start, data->id);
+		printf("%zu %zu is thinking\n", timenow() - data->start, data->id + 1);
 	sem_post(data->print);
 	to_do(data, index);
 }
@@ -104,10 +104,20 @@ void	*check_dead(void *arg)
 	t_data	*data;
 
 	data = (t_data *)arg;
-	// while (1)
-	// {
-		
-	// }
+	while (1)
+	{
+		if (timenow() - data->last_meal >= data->t_die)
+		{
+			sem_wait(data->print);
+			printf("%zu,%zu\n",data->t_die, timenow() - data->last_meal);
+			printf("%zu %zu died\n", timenow() - data->start, data->id + 1);
+			exit(0);
+		}
+		if (data->n_meal != (size_t)-1 && data->n_meal >= data->meals)
+			exit(0);
+
+		usleep(800);
+	}
 	return (NULL);
 }
 
@@ -152,14 +162,13 @@ void	creat_philos(t_data *data)
 	{
 		data->pid[data->id] = fork();
 		if (data->pid[data->id] == -1)
-		{
 			printf("fork fail\n");
-		}
-		if (data->pid[data->id] == 0)
+		if (data->pid[data->id] != 0)
 			routine(data);
-		//usleep(100);
+		usleep(100);
 		data->id++;
 	}
+	waitpid(-1, NULL, 0);
 }
 
 int main(int ac, char **av)
@@ -181,7 +190,6 @@ int main(int ac, char **av)
 		}
 		creat_philos(data);
 	}
-	else
-		
+
 	return (0);
 }
