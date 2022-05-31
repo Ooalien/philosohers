@@ -6,7 +6,7 @@
 /*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:59:53 by abayar            #+#    #+#             */
-/*   Updated: 2022/05/26 16:28:59 by abayar           ###   ########.fr       */
+/*   Updated: 2022/05/31 17:19:07 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	timenow(void)
 void	mysleep(int time)
 {
 	long	i;
-	int		j;	
+	int		j;
 
 	i = timenow();
 	j = (time * 1000) - 20000;
